@@ -1,3 +1,4 @@
+
 /*
  * File: mylinkedlist.c
  * YOUR NAME ... 
@@ -8,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mylinkedlist.h"
- 
+
 /*
  * Function: NewStudentCell
  * Usage: student_cell_T *element;
@@ -18,18 +19,18 @@
  */
 student_cell_T *NewStudentCell(int id, double gpa, char *name)
 {
-   student_cell_T *element;
-  
-   element = (student_cell_T *) malloc( sizeof(student_cell_T) );
-   if( !element){
-     fprintf(stderr,"NewStudentCell cannot allocate memory\n");
-     return NULL;
-   }
-   element->id = id;
-   element->gpa = gpa;
-   element->name = name;
+    student_cell_T *element;
 
-  return element;
+    element = (student_cell_T *) malloc( sizeof(student_cell_T) );
+    if( !element){
+        fprintf(stderr,"NewStudentCell cannot allocate memory\n");
+        return NULL;
+    }
+    element->id = id;
+    element->gpa = gpa;
+    element->name = name;
+
+    return element;
 }
 
 
@@ -42,20 +43,19 @@ student_cell_T *NewStudentCell(int id, double gpa, char *name)
  */
 linked_list_T *NewLinkedList(void)
 {
-   linked_list_T *list;
-  
-   list = (linked_list_T *) malloc( sizeof(linked_list_T) );
-   if( !list){
-     fprintf(stderr,"NewLinkedList cannot allocate memory\n");
-     return NULL;
-   }
+    linked_list_T *list;
 
-   list->head = NULL;
-   list->tail = NULL;
+    list = (linked_list_T *) malloc( sizeof(linked_list_T) );
+    if( !list){
+        fprintf(stderr,"NewLinkedList cannot allocate memory\n");
+        return NULL;
+    }
 
-  return list;
+    list->head = NULL;
+    list->tail = NULL;
+
+    return list;
 }
-
 
 /*
  * Function: FreeLinkedList
@@ -85,7 +85,7 @@ void FreeLinkedList(linked_list_T *list)
 void Enlist(linked_list_T *list, student_cell_T *element)
 {
     /* Assume that the memory and information for element is already allocated */
-    
+
     /* If list is empty, insert element at head node */
     /* Note: student can concurrently be list->head and list->tail, if either are NULL, list is empty  */
     if (list->head == NULL) {
@@ -115,14 +115,14 @@ student_cell_T *Delist(linked_list_T *list)
         fprintf(stderr, "ERROR: Head of list is NULL, cannot Delist\n");
         return NULL;
     }
-    
+
     student_cell_T *remove_element = list->head;
     void *address_space = &remove_element;
-    
+
     list->head = list->head->next;
     free(remove_element->name);
     free(remove_element->next);
-    
+
     return address_space;
 
 }
@@ -141,7 +141,12 @@ int LinkedListIsEmpty(linked_list_T *list)
 
 int LinkedListIsFull(linked_list_T *list)
 {
-  return 0; // because we have linked list
+    if (!LinkedListIsEmpty(list)) {
+        fprintf(stdout, "Linked list is NOT full, returning 1\n");
+        return 1;
+    }
+
+    return 0; // because we have linked list
 }
 
 /*
@@ -197,7 +202,7 @@ student_cell_T *GetLinkedListElement(linked_list_T *list, int index)
         fprintf(stderr, "ERROR: Invalid index\nindex = %i\n", index);
         return NULL;
     }
-    
+
     int length;
     int current_index;
     student_cell_T *current;
@@ -214,7 +219,7 @@ student_cell_T *GetLinkedListElement(linked_list_T *list, int index)
         ++current_index;
         current = current->next;
     }
-    
+
     fprintf(stderr, "ERROR: Index is out of bounds, this condition shouldn't have been reached\nindex = %i\n", index);
     return NULL;
 }
@@ -233,7 +238,7 @@ student_cell_T *GetLinkedListElementTest(linked_list_T *list, int index)
     length = LinkedListLength(list);
     current_index = 0;
     current = list->head;
-    
+
     while (current->next != NULL) {
         if (current_index == index) {
             fprintf(stdout, "Element using index was found, returning\n");
@@ -265,7 +270,7 @@ void print_list(linked_list_T *list)
     }
 
     student_cell_T *current = list->head;
-    
+
     if (current->next == NULL) {
         fprintf(stdout, "Only one element in linked list: %i %.2lf %s\n", 
                 current->id, current->gpa, current->name);
@@ -277,8 +282,8 @@ void print_list(linked_list_T *list)
                 current->id, current->gpa, current->name);
         current = current->next;
     }
-    
+
     fprintf(stdout, "End of list has been reached, no more elements to print\n");
 }
 
-  
+

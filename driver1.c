@@ -1,3 +1,4 @@
+
 /*
  * File: driver1.c
  * YOUR NAME ... YOU NEED TO IMPLEMENT THE main() + additional functions if needed
@@ -23,31 +24,31 @@ char *ReadLine(void);
 
 int main(int argc, char *arvg[])
 {
-  // YOU NEED TO IMPLEMENT THIS driver1.c USING FUNCTIONS FROM mylinkedlist.h
-  // But before that, implement your ReadLine() function, and test it as shown below. 
-  // IF NEEDED, YOU CAN ALSO IMLEMENT YOUR OWN FUNCTIONS HERE
+    // YOU NEED TO IMPLEMENT THIS driver1.c USING FUNCTIONS FROM mylinkedlist.h
+    // But before that, implement your ReadLine() function, and test it as shown below. 
+    // IF NEEDED, YOU CAN ALSO IMLEMENT YOUR OWN FUNCTIONS HERE
 
 #if 0
-  char *name;
+    char *name;
 
-  printf("Enter a name to test your ReadLine function  : ");
-  name = ReadLine();
-  printf("User entered : %s \n", name);  
-  free(name);
+    printf("Enter a name to test your ReadLine function  : ");
+    name = ReadLine();
+    printf("User entered : %s \n", name);  
+    free(name);
 
-  return 0;
+    return 0;
 #endif
-    
+
     student_cell_T *student1 = NewStudentCell(11, 3.3, "ryan");
     student_cell_T *student2 = NewStudentCell(12, 3.4, "maggie");
     student_cell_T *student3 = NewStudentCell(13, 3.5, "james");
-    
+
     linked_list_T *list = NewLinkedList();
 
     Enlist(list, student1);
     Enlist(list, student2);
     Enlist(list, student3);
-    
+
     print_list(list);
 
     FreeLinkedList(list);
@@ -94,16 +95,16 @@ int main(int argc, char *arvg[])
  */
 char *ReadLine()
 {
-  // A SIMPLE WAY TO IMPLEMENT JUST TO TEST FOR NOW, BUT THIS IS NOT WHAT WE WANT!!!
-  char *buff = malloc(100);
-  scanf("%s", buff);
-  return buff;
+    // A SIMPLE WAY TO IMPLEMENT JUST TO TEST FOR NOW, BUT THIS IS NOT WHAT WE WANT!!!
+    char *buff = malloc(100);
+    scanf("%s", buff);
+    return buff;
 
 
-  // YOU NEED TO DELETE ABOVE 3 LINES, and IMPLEMENT THSI as described above
-  
+    // YOU NEED TO DELETE ABOVE 3 LINES, and IMPLEMENT THSI as described above
 
-  return(NULL);   // if there is any error!
+
+    return(NULL);   // if there is any error!
 }
 
-   
+

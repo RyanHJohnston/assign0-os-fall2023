@@ -1,3 +1,4 @@
+
 /*
  * File: mylinkedlist.h
 
@@ -6,8 +7,7 @@
  *
  * WHEN ADDING NEW FUNCTIONS, e.g., listing all students, 
  *       finding min, max, avg gpa, and removing the student with highest gpa etc.
- * YOU CAN NAME THEM AS YOU WISH, BUT TRY TO USE THE SAME NAMING CONVENTION  
- *
+ * YOU CAN NAME THEM AS YOU WISH, BUT TRY TO USE THE SAME NAMING CONVENTION  *
  * THIS IS JUST AN INTERFACE, SO DO NOT WRITE ANY IMPLEMENTATION/CODE HERE
  * ALL IMPLEMENTATION/CODE FOR THE BELOW FUNCTIONS MUST BE in mylinkedlist.c 
  *  
@@ -140,6 +140,5 @@ student_cell_T *GetLinkedListElement(linked_list_T *list, int index);
  * @param A linked list of type linked_list_T
  */
 void print_list(linked_list_T *list);
-
 
 #endif

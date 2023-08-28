@@ -219,6 +219,34 @@ student_cell_T *GetLinkedListElement(linked_list_T *list, int index)
     return NULL;
 }
 
+student_cell_T *GetLinkedListElementTest(linked_list_T *list, int index)
+{
+    if (LinkedListIsEmpty(list)) {
+        fprintf(stderr, "ERROR: List is empty, no element could be retrieved, returning NULL\n");
+        return NULL;
+    }
+
+    int length;
+    int current_index;
+    student_cell_T *current;
+
+    length = LinkedListLength(list);
+    current_index = 0;
+    current = list->head;
+    
+    while (current->next != NULL) {
+        if (current_index == index) {
+            fprintf(stdout, "Element using index was found, returning\n");
+            return current;
+        }
+        ++current_index;
+        current = current->next;
+    }
+
+    fprintf(stdout, "ERROR: Index is out of bounds\n");
+    return NULL;
+}
+
 /* OTHER FUNCTIONS YOU WOULD NEED....
  * EXPORT THEM HERE, BUT IMPLMENT THEM in mylinkedlist.c 
  */

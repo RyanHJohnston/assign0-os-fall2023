@@ -21,6 +21,13 @@
 #define _mylinkedlist_h
 
 /*
+ * This is used just for easier reading
+ * I am used to Rust anyways!
+ */
+#include <stdint.h>
+typedef int32_t i32;
+
+/*
  * Type: student_cell_T
  * -----------
  * This type defines the cells used for the linked list that
@@ -33,7 +40,6 @@ typedef struct student_cell_T {
    char   *name;  //  name is just a pointer here, you need to allocate space for name
    struct student_cell_T *next;
 } student_cell_T;
-
 
 /*
  * Type: linked_list_T
@@ -93,7 +99,7 @@ void Enlist(linked_list_T *list, student_cell_T *element);
  * and returns its address to the caller (client).  If the list is empty, Delist
  * prints an Error with an appropriate message and returns NULL.
  */
-student_cell_T *Delist(linked_list_T *list);
+void Delist(linked_list_T *list);
 
 /*
  * Functions: LinkedListIsEmpty, LinkedListIsFull
@@ -140,5 +146,6 @@ student_cell_T *GetLinkedListElement(linked_list_T *list, int index);
  * @param A linked list of type linked_list_T
  */
 void print_list(linked_list_T *list);
+
 
 #endif

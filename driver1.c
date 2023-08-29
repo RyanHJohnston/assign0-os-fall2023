@@ -39,19 +39,9 @@ int main(int argc, char *arvg[])
     return 0;
 #endif
 
-    student_cell_T *student1 = NewStudentCell(11, 3.3, "ryan");
-    student_cell_T *student2 = NewStudentCell(12, 3.4, "maggie");
-    student_cell_T *student3 = NewStudentCell(13, 3.5, "james");
+    
 
-    linked_list_T *list = NewLinkedList();
 
-    Enlist(list, student1);
-    Enlist(list, student2);
-    Enlist(list, student3);
-
-    print_list(list);
-
-    FreeLinkedList(list);
 
     fprintf(stdout, "The program worked!\n");
 
@@ -106,5 +96,6 @@ char *ReadLine()
 
     return(NULL);   // if there is any error!
 }
+
 
 

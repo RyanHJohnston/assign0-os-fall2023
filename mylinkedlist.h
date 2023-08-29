@@ -147,5 +147,26 @@ student_cell_T *GetLinkedListElement(linked_list_T *list, int index);
  */
 void print_list(linked_list_T *list);
 
+void 
+print_options();
+
+void
+print_student_attributes(student_cell_T *student);
+
+char *
+user_str_input(int32_t buffer_length);
+
+char *
+read_line(int32_t buffer_size);
+
+void
+check_for_str_to_type_error(int32_t num, char *endptr);
+
+void
+print_gpa_min_avg_max(linked_list_T *list);
+
+void
+remove_highest_gpa_student(linked_list_T *list);
+
 
 #endif

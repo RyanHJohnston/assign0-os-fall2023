@@ -29,19 +29,9 @@
 char *ReadLine(void);
 
 
-void 
-print_options();
 
-char *
-user_str_input(int32_t buffer_length);
-
-char *
-read_line(int32_t buffer_size);
-
-void
-check_for_str_to_type_error(int32_t num, char *endptr);
-
-int main(int argc, char *arvg[])
+int32_t 
+main(int32_t argc, char *arvg[])
 {
     // YOU NEED TO IMPLEMENT THIS driver1.c USING FUNCTIONS FROM mylinkedlist.h
     // But before that, implement your ReadLine() function, and test it as shown below. 
@@ -104,10 +94,12 @@ int main(int argc, char *arvg[])
             case 6:
                 /* PRINT THE MIN, AVG, MAX GPAS IN LINKED LIST */
                 fprintf(stdout, "%c\n", choice);
+                print_gpa_min_avg_max(list); // Initialize minimum value to a large valuein_avg_max(list);                
                 break;
             case 7:
                 /* REMOVE THE STUDENT WITH THE HIGHEST GPA AND PRINT HIS/HER INFO */
                 fprintf(stdout, "%c\n", choice);
+                remove_highest_gpa_student(list);
                 break;
             case 8:
                 fprintf(stdout, "%c\n", choice);
@@ -119,7 +111,7 @@ int main(int argc, char *arvg[])
 
     } while (choice != 8);
 
-    fprintf(stdout, "\nExiting Program.\n\n");
+    fprintf(stdout, "\nExiting Program.\n");
 
     return 0;
 }
@@ -173,58 +165,3 @@ char *ReadLine()
     return(NULL);   // if there is any error!
 }
 
-/* Prints the options for the user to take input */
-    void 
-print_options()
-{
-    fprintf(stdout, "1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.\n");  
-    fprintf(stdout, "2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info\n");
-    fprintf(stdout, "3 - Print the number of students in the linked list (Length)\n");
-    fprintf(stdout, "4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)\n");
-    fprintf(stdout, "5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student\n");
-    fprintf(stdout, "6 - Print the min, average, max GPAs in the linked list\n");
-    fprintf(stdout, "7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)\n");
-    fprintf(stdout, "8 - Exit\n");
-    fprintf(stdout, "Enter your choice: ");
-}
-
-    char *
-user_str_input(int32_t buffer_length)
-{
-    char buffer[buffer_length];
-
-    // Read a string from the user using fgets
-    if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
-        // Remove the newline character if present
-        size_t length = strlen(buffer);
-        if (length > 0 && buffer[length - 1] == '\n') {
-            buffer[length - 1] = '\0';
-        }
-
-        printf("You entered: %s\n", buffer);
-        return buffer;
-    }
-
-    fprintf(stderr, "ERROR: User input failed, returning NULL\n");
-    return NULL;
-}
-
-    char *
-read_line(int32_t buffer_size)
-{
-    char *buff = malloc(buffer_size);
-    scanf("%s", buff);
-    return buff;
-
-    return(NULL);
-}
-
-    void
-check_for_str_to_type_error(int32_t num, char *endptr)
-{
-    if (*endptr != '\0') {
-        fprintf(stderr, "ERROR: String to other data type conversion failed. Invalid input %s\n", 
-                endptr);
-        exit(EXIT_FAILURE);
-    }
-}

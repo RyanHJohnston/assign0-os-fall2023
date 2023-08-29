@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 #include "mylinkedlist.h"
 
 /* typedef int32_t i32; */
@@ -121,11 +122,17 @@ Delist(linked_list_T *list)
         fprintf(stdout, "List is empty, head element is NULL\n");
     }
     
-    
     student_cell_T *temp = list->head;
-    void *address_space = &temp;
+    student_cell_T *current;
 
     list->head = list->head->next;
+    current = list->head;
+
+    while (current->next != NULL) {
+        current = current->next;
+    }
+
+    list->tail = current;
 
     free(temp);
     temp = NULL;
@@ -209,56 +216,34 @@ student_cell_T
         fprintf(stderr, "ERROR: Invalid index\nindex = %i\n", index);
         return NULL;
     }
-
-    int32_t length;
-    int32_t current_index;
-    student_cell_T *current;
-
-    length = LinkedListLength(list);
-    current_index = 0;
-    current = current->next;
-
-    while (current->next != NULL) {
-        if (current_index == index) {
-            fprintf(stdout, "Element using index was found, returning\n");
-            return current;
-        }
-        ++current_index;
-        current = current->next;
-    }
-
-    fprintf(stderr, "ERROR: Index is out of bounds, this condition shouldn't have been reached\nindex = %i\n", index);
-    return NULL;
-}
-
-
-student_cell_T 
-*GetLinkedListElementTest(linked_list_T *list, int32_t index)
-{
-    if (LinkedListIsEmpty(list)) {
-        fprintf(stderr, "ERROR: List is empty, no element could be retrieved, returning NULL\n");
-        return NULL;
-    }
-
-    int32_t length;
-    int32_t current_index;
-    student_cell_T *current;
-
-    length = LinkedListLength(list);
-    current_index = 0;
-    current = list->head;
     
+    int32_t current_index = 0;
+    student_cell_T *current = list->head;
+   
     while (current->next != NULL) {
         if (current_index == index) {
-            fprintf(stdout, "Element using index was found, returning\n");
             return current;
         }
-        ++current_index;
+        
         current = current->next;
+        ++current_index;
     }
 
-    fprintf(stdout, "ERROR: Index is out of bounds\n");
+    fprintf(stderr, "ERROR: index out of bounds\n");
     return NULL;
+
+
+# if 0
+    while (current != NULL) {
+        if (currentPosition == index) {
+            return current; // Return the node at the given index
+        }
+
+        current = current->next;
+        currentPosition++;
+    }
+
+#endif
 }
 
 /* OTHER FUNCTIONS YOU WOULD NEED....
@@ -298,3 +283,193 @@ print_list(linked_list_T *list)
             current->id, current->gpa, current->name);
 }
 
+/* Prints the options for the user to take input */
+void 
+print_options()
+{
+    fprintf(stdout, "1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.\n");  
+    fprintf(stdout, "2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info\n");
+    fprintf(stdout, "3 - Print the number of students in the linked list (Length)\n");
+    fprintf(stdout, "4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)\n");
+    fprintf(stdout, "5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student\n");
+    fprintf(stdout, "6 - Print the min, average, max GPAs in the linked list\n");
+    fprintf(stdout, "7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)\n");
+    fprintf(stdout, "8 - Exit\n");
+    fprintf(stdout, "Enter your choice: ");
+}
+
+void
+print_student_attributes(student_cell_T *student)
+{
+    fprintf(stdout, "\n%i %.2lf %s\n",
+            student->id, student->gpa, student->name);
+}
+
+char *
+user_str_input(int32_t buffer_length)
+{
+    char buffer[buffer_length];
+
+    // Read a string from the user using fgets
+    if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+        // Remove the newline character if present
+        size_t length = strlen(buffer);
+        if (length > 0 && buffer[length - 1] == '\n') {
+            buffer[length - 1] = '\0';
+        }
+
+        printf("You entered: %s\n", buffer);
+        return buffer;
+    }
+    
+    fprintf(stderr, "ERROR: User input failed, returning NULL\n");
+    return NULL;
+}
+
+char *
+read_line(int32_t buffer_size)
+{
+    char *buff = malloc(buffer_size);
+    scanf("%s", buff);
+    return buff;
+
+    return(NULL);
+}
+
+void
+check_for_str_to_type_error(int32_t num, char *endptr)
+{
+    if (*endptr != '\0') {
+        fprintf(stderr, "ERROR: String to other data type conversion failed. Invalid input %s\n", 
+                endptr);
+        exit(EXIT_FAILURE);
+    }
+}
+
+double
+get_gpa_min(linked_list_T *list)
+{
+    if (LinkedListIsEmpty(list)) {
+        fprintf(stderr, "ERROR: LInked list is empty, cannot get GPA minimum\n");
+        return 0;
+    }
+
+    student_cell_T *current = list->head;
+    double min = current->gpa;
+    
+    while (current != NULL) {
+        if (current->gpa < min) {
+            min = current->gpa;
+        }
+        current = current->next;
+    }
+    
+    return min;
+}
+
+double
+get_gpa_avg(linked_list_T *list)
+{
+    if (LinkedListIsEmpty(list)) {
+        fprintf(stderr, "ERROR: LInked list is empty, cannot get GPA average\n");
+        return 0;
+    }
+
+    double avg;
+    int32_t length; /* using the LinkedListLength function would be computationall expensive, just count */
+    double sum;
+    student_cell_T *current = list->head;
+    
+    length = 0; /* b/c linked list is not empty */
+    while (current != NULL) {
+        sum += current->gpa;
+        length += 1;
+        current = current->next;
+    }
+    
+    avg = sum / length;
+    
+    return avg;
+}
+
+double 
+get_gpa_max(linked_list_T *list)
+{
+    if (LinkedListIsEmpty(list)) {
+        fprintf(stderr, "ERROR: LInked list is empty, cannot get GPA minimum\n");
+        return 0;
+    }
+
+    double max = 0.0;
+    student_cell_T *current = list->head;
+
+    while (current != NULL) {
+        if (max < current->gpa) {
+            max = current->gpa;
+        }
+        current = current->next;
+    }
+    
+    return max;
+}
+
+void
+print_gpa_min_avg_max(linked_list_T *list)
+{
+    if (LinkedListIsEmpty(list)) {
+        fprintf(stderr, "ERROR: Linked list is empty, cannot get gpa stats\n");
+        return;
+    }
+    
+    double min;
+    double avg;
+    double max;
+    
+    min = get_gpa_min(list);
+    avg = get_gpa_avg(list);
+    max = get_gpa_max(list);
+
+    fprintf(stdout, "\nMinimum GPA: %.2lf\nAverage GPA: %.2lf\nMaximum GPA: %.2lf\n\n",
+            min, avg, max);
+}
+
+/*
+ * ISSUE: Removing the specified element is causing issues
+ */
+void
+remove_highest_gpa_student(linked_list_T *list)
+{
+    if (LinkedListIsEmpty(list)) {
+        fprintf(stderr, "ERROR: Linked list is empty, cannot get gpa stats\n");
+        return;
+    }
+    
+    double max = 0.0;
+    student_cell_T *current = list->head;
+    student_cell_T *highest_gpa_student;
+    int32_t current_index = 0;
+    int32_t highest_gpa_student_index = 0;
+    int32_t index = 0;
+
+    fprintf(stdout, "\nDelisting student with highest GPA\n\n");
+    
+    while (current != NULL) {
+        if (max < current->gpa) {
+            max = current->gpa;
+            highest_gpa_student = current;
+            highest_gpa_student_index = index;
+        }
+        current = current->next;
+        index += 1;
+    }
+    
+    fprintf(stdout, "\nRemoving student with highest GPA");
+    print_student_attributes(highest_gpa_student);
+   
+    highest_gpa_student = GetLinkedListElement(list, highest_gpa_student_index);
+    student_cell_T *temp = highest_gpa_student;
+    highest_gpa_student = highest_gpa_student->next;
+    free(temp);
+
+    fprintf(stdout, "\nSuccessfully removed student with highest GPA\n\n");
+}

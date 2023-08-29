@@ -10,13 +10,11 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
-#include <strings.h>
 #include "mylinkedlist.h"
 
+typedef int32_t i32;
+
 #define MAX_BUFFER 100
-#define MAX_ID_BUFFER 4
-#define MAX_GPA_BUFFER 4
-#define MAX_NAME_BUFFER 49
 
 /* 
  * Function: ReadLine
@@ -33,13 +31,7 @@ void
 print_options();
 
 char *
-user_str_input(int32_t buffer_length);
-
-char *
-read_line(int32_t buffer_size);
-
-void
-check_for_str_to_type_error(int32_t num, char *endptr);
+user_str_input(char *buffer);
 
 int main(int argc, char *arvg[])
 {
@@ -47,79 +39,23 @@ int main(int argc, char *arvg[])
     // But before that, implement your ReadLine() function, and test it as shown below. 
     // IF NEEDED, YOU CAN ALSO IMLEMENT YOUR OWN FUNCTIONS HERE
 
-    uint32_t choice;
-    uint32_t index_choice;
-    linked_list_T *list = NewLinkedList();
-    
-    do {
+    char buffer[MAX_BUFFER];
 
-        print_options();
-        scanf("%i", &choice);
+    print_options();
 
-        switch (choice) {
-            case 1:
-                fprintf(stdout, "\nChoice entered: %d\n", choice);
-                fprintf(stdout, "Enter student ID: ");
-                char *id_str = read_line(MAX_ID_BUFFER);
-                fprintf(stdout, "Enter student GPA: ");
-                char *gpa_str = read_line(MAX_GPA_BUFFER);
-                fprintf(stdout, "Enter student name: ");
-                char *name = read_line(MAX_NAME_BUFFER);
-                char *endptr;  // Pointer to the next character after the number
-                int32_t id = (int32_t) strtol(id_str, &endptr, 10);
-                double gpa = (double) strtold(gpa_str, &endptr);
-                check_for_str_to_type_error(id, endptr);
-                check_for_str_to_type_error((int32_t) gpa, endptr);
-
-                student_cell_T *student = NewStudentCell(id, gpa, name);
-                Enlist(list, student);
-                break;
-            case 2:
-                fprintf(stdout, "%c\n", choice);
-                student_cell_T *removed_student = list->head;
-                Delist(list);
-                if (removed_student->name == NULL) {
-                    break;
-                } else {
-                    fprintf(stdout, "\n\nREMOVED STUDENT: %s\n\n", removed_student->name);
-                }
-                break;
-            case 3:
-                fprintf(stdout, "%c\n", choice);
-                fprintf(stdout, "\nNumber of students: %i\n\n", LinkedListLength(list));
-                break;
-            case 4:
-                /* RIGHT HERE: YOU'RE GETTING AN ADDRESS BOUNDARY ERROR */
-                fprintf(stdout, "%c\n", choice);
-                fprintf(stdout, "\nEnter index: ");
-                scanf("%i", &index_choice);
-                student_cell_T *chosen_student = GetLinkedListElement(list, index_choice);
-                fprintf(stdout, "\nChosen student: %i %.2lf %s\n\n", 
-                        chosen_student->id, chosen_student->gpa, chosen_student->name);
-                break;
-            case 5:
-                fprintf(stdout, "%cn", choice);
-                print_list(list);
-                break;
-            case 6:
-                /* PRINT THE MIN, AVG, MAX GPAS IN LINKED LIST */
-                fprintf(stdout, "%c\n", choice);
-                break;
-            case 7:
-                /* REMOVE THE STUDENT WITH THE HIGHEST GPA AND PRINT HIS/HER INFO */
-                fprintf(stdout, "%c\n", choice);
-                break;
-            case 8:
-                fprintf(stdout, "%c\n", choice);
-                break;
-            default:
-                fprintf(stdout, "Invalid choice\n");
-                break;
+    fprintf(stdout, "\nEnter somethin!: ");
+    // Read a string from the user using fgets
+    if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+        // Remove the newline character if present
+        size_t length = strlen(buffer);
+        if (length > 0 && buffer[length - 1] == '\n') {
+            buffer[length - 1] = '\0';
         }
 
-    } while (choice != 8);
-
-    fprintf(stdout, "\nExiting Program.\n\n");
+        printf("You entered: %s\n", buffer);
+    } else {
+        printf("Input error.\n");
+    }
 
     return 0;
 }
@@ -174,7 +110,7 @@ char *ReadLine()
 }
 
 /* Prints the options for the user to take input */
-    void 
+void 
 print_options()
 {
     fprintf(stdout, "1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.\n");  
@@ -188,12 +124,10 @@ print_options()
     fprintf(stdout, "Enter your choice: ");
 }
 
-    char *
-user_str_input(int32_t buffer_length)
+char *
+user_str_input(char *buffer)
 {
-    char buffer[buffer_length];
-
-    // Read a string from the user using fgets
+      // Read a string from the user using fgets
     if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
         // Remove the newline character if present
         size_t length = strlen(buffer);
@@ -209,22 +143,3 @@ user_str_input(int32_t buffer_length)
     return NULL;
 }
 
-    char *
-read_line(int32_t buffer_size)
-{
-    char *buff = malloc(buffer_size);
-    scanf("%s", buff);
-    return buff;
-
-    return(NULL);
-}
-
-    void
-check_for_str_to_type_error(int32_t num, char *endptr)
-{
-    if (*endptr != '\0') {
-        fprintf(stderr, "ERROR: String to other data type conversion failed. Invalid input %s\n", 
-                endptr);
-        exit(EXIT_FAILURE);
-    }
-}

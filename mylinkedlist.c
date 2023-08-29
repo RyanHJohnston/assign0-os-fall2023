@@ -17,12 +17,12 @@
 /*
  * Function: NewStudentCell
  * Usage: student_cell_T *element;
- *        element = NewStudentCell(i32 id, double gpa, char *name);
+ *        element = NewStudentCell(int32_t id, double gpa, char *name);
  * --------------------------
  * This function allocates space for a student cell and intilize its fileds
  */
 student_cell_T 
-*NewStudentCell(i32 id, double gpa, char *name)
+*NewStudentCell(int32_t id, double gpa, char *name)
 {
     student_cell_T *element;
 
@@ -103,8 +103,6 @@ Enlist(linked_list_T *list, student_cell_T *element)
     } else {
         list->tail->next = element;
         list->tail = element;
-        fprintf(stdout, "Student: %i %.2lf %s was inserted at end of list\n", 
-                element->id, element->gpa, element->name);
     }
 }
 
@@ -121,28 +119,16 @@ Delist(linked_list_T *list)
 {
     if (list->head == NULL) {
         fprintf(stdout, "List is empty, head element is NULL\n");
-        return;
     }
     
     
     student_cell_T *temp = list->head;
+    void *address_space = &temp;
 
     list->head = list->head->next;
 
     free(temp);
     temp = NULL;
-
-    #if 0
-     // Move the head pointer to the next node
-    Node* temp = head;
-    head = head->next;
-  
-    delete temp;
-  
-    return head; 
-    #endif
-    
-    
 }
 
 /*
@@ -152,13 +138,13 @@ Delist(linked_list_T *list)
  * -------------------------------------
  * These functions test whether the list is empty or full.
  */
-i32 
+int32_t 
 LinkedListIsEmpty(linked_list_T *list)
 {
     return list == NULL;
 }
 
-i32 LinkedListIsFull(linked_list_T *list)
+int32_t LinkedListIsFull(linked_list_T *list)
 {
     if (!LinkedListIsEmpty(list)) {
         fprintf(stdout, "Linked list is NOT full, returning 1\n");
@@ -174,10 +160,10 @@ i32 LinkedListIsFull(linked_list_T *list)
  * ------------------------------
  * This function returns the number of elements in the list.
  */
-i32 
+int32_t 
 LinkedListLength(linked_list_T  *list)
 {
-    i32 count = 0;
+    int32_t count = 0;
 
     if (LinkedListIsEmpty(list)) {
         fprintf(stdout, "Linked list is empty, returning zero\n");
@@ -212,7 +198,7 @@ LinkedListLength(linked_list_T  *list)
  * and is instead provided mainly to facilitate debugging.
  */
 student_cell_T 
-*GetLinkedListElement(linked_list_T *list, i32 index)
+*GetLinkedListElement(linked_list_T *list, int32_t index)
 {
     if (LinkedListIsEmpty(list)) {
         fprintf(stderr, "ERROR: List is empty, no element could get retrieved, returning NULL\n");
@@ -224,8 +210,8 @@ student_cell_T
         return NULL;
     }
 
-    i32 length;
-    i32 current_index;
+    int32_t length;
+    int32_t current_index;
     student_cell_T *current;
 
     length = LinkedListLength(list);
@@ -247,15 +233,15 @@ student_cell_T
 
 
 student_cell_T 
-*GetLinkedListElementTest(linked_list_T *list, i32 index)
+*GetLinkedListElementTest(linked_list_T *list, int32_t index)
 {
     if (LinkedListIsEmpty(list)) {
         fprintf(stderr, "ERROR: List is empty, no element could be retrieved, returning NULL\n");
         return NULL;
     }
 
-    i32 length;
-    i32 current_index;
+    int32_t length;
+    int32_t current_index;
     student_cell_T *current;
 
     length = LinkedListLength(list);
@@ -289,14 +275,14 @@ void
 print_list(linked_list_T *list)
 {
     if (LinkedListIsEmpty(list)) {
-        fprintf(stderr, "ERROR: Linked list is empty, cannot pri32 elements\n");
+        fprintf(stderr, "ERROR: Linked list is empty, cannot print32_t elements\n");
         return;
     }
 
     student_cell_T *current = list->head;
 
     if (current->next == NULL) {
-        fprintf(stdout, "Only one element in linked list: %i %.2lf %s\n", 
+        fprintf(stdout, "\nOnly one element in linked list: %i %.2lf %s\n", 
                 current->id, current->gpa, current->name);
         return;
     }
@@ -310,7 +296,5 @@ print_list(linked_list_T *list)
     /* Print out tail of linked list */
     fprintf(stdout, "Student: %i %.2lf %s\n",
             current->id, current->gpa, current->name);
-
-    fprintf(stdout, "End of list has been reached, no more elements to print\n");
 }
 

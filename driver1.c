@@ -50,11 +50,11 @@ main(int32_t argc, char *arvg[])
             case 1:
                 fprintf(stdout, "\nChoice entered: %d\n", choice);
                 fprintf(stdout, "Enter student ID: ");
-                char *id_str = read_line(MAX_ID_BUFFER);
+                char *id_str = read_line(100);
                 fprintf(stdout, "Enter student GPA: ");
-                char *gpa_str = read_line(MAX_GPA_BUFFER);
+                char *gpa_str = read_line(100);
                 fprintf(stdout, "Enter student name: ");
-                char *name = read_line(MAX_NAME_BUFFER);
+                char *name = read_line(100);
                 char *endptr;  // Pointer to the next character after the number
                 int32_t id = (int32_t) strtol(id_str, &endptr, 10);
                 double gpa = (double) strtold(gpa_str, &endptr);
@@ -84,8 +84,14 @@ main(int32_t argc, char *arvg[])
                 fprintf(stdout, "\nEnter index: ");
                 scanf("%i", &index_choice);
                 student_cell_T *chosen_student = GetLinkedListElement(list, index_choice);
-                fprintf(stdout, "\nChosen student: %i %.2lf %s\n\n", 
-                        chosen_student->id, chosen_student->gpa, chosen_student->name);
+                
+                if (chosen_student == NULL) {
+                    fprintf(stderr, "\nERROR: Invalid index %i\n", 
+                            index_choice);
+                    break;
+                } else {
+                    print_student_attributes(chosen_student);
+                }
                 break;
             case 5:
                 fprintf(stdout, "%cn", choice);
@@ -103,6 +109,7 @@ main(int32_t argc, char *arvg[])
                 break;
             case 8:
                 fprintf(stdout, "%c\n", choice);
+                FreeLinkedList(list);
                 break;
             default:
                 fprintf(stdout, "Invalid choice\n");

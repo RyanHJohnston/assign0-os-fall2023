@@ -168,5 +168,4 @@ print_gpa_min_avg_max(linked_list_T *list);
 void
 remove_highest_gpa_student(linked_list_T *list);
 
-
 #endif

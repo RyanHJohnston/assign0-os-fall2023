@@ -1,0 +1,271 @@
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+CREATING STUDENT
+
+Enter student ID: Enter student GPA: Enter student name: Student added: 
+ID: 123456
+GPA: 4.50
+Name: Ryan Johnston
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+CREATING STUDENT
+
+Enter student ID: Enter student GPA: Enter student name: Student added: 
+ID: 234567
+GPA: 3.40
+Name: Maggie Brigleb
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+CREATING STUDENT
+
+Enter student ID: Enter student GPA: Enter student name: Student added: 
+ID: 102938
+GPA: 1.20
+Name: James Johnston
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+CREATING STUDENT
+
+Enter student ID: Enter student GPA: Enter student name: Student added: 
+ID: 203945
+GPA: 2.30
+Name: Larry Thomas
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+CREATING STUDENT
+
+Enter student ID: Enter student GPA: Enter student name: Student added: 
+ID: 999999
+GPA: 6.60
+Name: David Goggins
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+CREATING STUDENT
+
+Enter student ID: Enter student GPA: Enter student name: Student added: 
+ID: 777777
+GPA: 0.00
+Name: James Monroe
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+PRINTING LIST OF ALL STUDENTS
+
+
+ID: 777777
+GPA: 0.00
+Name: James Monroe
+
+ID: 999999
+GPA: 6.60
+Name: David Goggins
+
+ID: 203945
+GPA: 2.30
+Name: Larry Thomas
+
+ID: 102938
+GPA: 1.20
+Name: James Johnston
+
+ID: 234567
+GPA: 3.40
+Name: Maggie Brigleb
+
+ID: 123456
+GPA: 4.50
+Name: Ryan Johnston
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+DELISTING STUDENT
+
+
+Removing: 
+
+ID: 777777
+GPA: 0.00
+Name: James Monroe
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+PRINTING LENGTH OF LINKED LIST
+
+
+Number of students: 5
+
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+FETCHING STUDENT BY INDEX
+
+
+Enter index: 
+ID: 102938
+GPA: 1.20
+Name: James Johnston
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+PRINTING MINIMUM, AVERAGE, AND MAXIMUM GPA
+
+
+Minimum GPA: 1.20
+Average GPA: 3.60
+Maximum GPA: 6.60
+
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+REMOVING STUDENT WITH HIGHEST GPA
+
+
+ID: 999999
+GPA: 6.60
+Name: David Goggins
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+PRINTING LIST OF ALL STUDENTS
+
+
+ID: 203945
+GPA: 2.30
+Name: Larry Thomas
+
+ID: 102938
+GPA: 1.20
+Name: James Johnston
+
+ID: 234567
+GPA: 3.40
+Name: Maggie Brigleb
+
+ID: 123456
+GPA: 4.50
+Name: Ryan Johnston
+
+1 - Create a new student cell with given id, gpa, name info, and add (Enlist) it to the end of the linked list.
+2 - Remove (Delist) the first student from linked list and print his/her id, gpa, name info
+3 - Print the number of students in the linked list (Length)
+4 - Print (id, gpa, name) of a student at a specific index (head of the list is defined as index 0)
+5 - Print the list of all students in the linked list. Print (id, gpa, name) of every student
+6 - Print the min, average, max GPAs in the linked list
+7 - Remove the student with highest GPA and print his/her info (if there are ties, just take the first one you found)
+8 - Exit
+Enter your choice: 
+
+EXITING PROGRAM
+
+
+End of program, thank you for using assignment 0. I love working with pointers /s

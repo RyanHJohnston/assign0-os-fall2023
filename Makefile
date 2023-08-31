@@ -1,10 +1,16 @@
+# Execute your driver1 program. Enter at least 6 students. Select each of other options at least once.
+# Then, copy/paste your outputs from screen into driver1_output.txt..
+# Also run your program with valgrind driver1, and make sure there is no memory leakages at the end!
+
 CC = gcc
 CFLAGS = -Wall -g
 
 all: driver1 
 
 clean:
-	rm -f *.o driver1 
+	rm -f *.o driver1
+run:
+	valgrind ./driver1 < driver1_input.txt > driver1_output.txt
 
 mylinkedlist.o: mylinkedlist.c mylinkedlist.h
 	$(CC) $(CFLAGS) -c mylinkedlist.c

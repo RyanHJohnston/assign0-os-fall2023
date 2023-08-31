@@ -6,6 +6,7 @@
  * ....
  */
 
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -13,10 +14,9 @@
 #include <strings.h>
 #include "mylinkedlist.h"
 
-#define MAX_BUFFER 100
-#define MAX_ID_BUFFER 4
-#define MAX_GPA_BUFFER 4
-#define MAX_NAME_BUFFER 49
+#define MAX_ID_BUFFER 6
+#define MAX_GPA_BUFFER 3
+#define MAX_NAME_BUFFER 100
 
 /* 
  * Function: ReadLine
@@ -29,18 +29,24 @@
 char *ReadLine(void);
 
 
-
-int32_t 
-main(int32_t argc, char *arvg[])
+/*
+ * Driver'
+ */
+int
+main(int argc, char *arvg[])
 {
     // YOU NEED TO IMPLEMENT THIS driver1.c USING FUNCTIONS FROM mylinkedlist.h
     // But before that, implement your ReadLine() function, and test it as shown below. 
     // IF NEEDED, YOU CAN ALSO IMLEMENT YOUR OWN FUNCTIONS HERE
 
-    uint32_t choice;
-    uint32_t index_choice;
+    unsigned int choice;
+    unsigned int index_choice;
+    const size_t id_buff_size = MAX_ID_BUFFER;
+    const size_t gpa_buff_size = MAX_GPA_BUFFER;
+    const size_t name_buff_size = MAX_NAME_BUFFER;
     linked_list_T *list = NewLinkedList();
     
+
     do {
 
         print_options();
@@ -48,39 +54,40 @@ main(int32_t argc, char *arvg[])
 
         switch (choice) {
             case 1:
-                fprintf(stdout, "\nChoice entered: %d\n", choice);
+                fprintf(stdout, "\n\nCREATING STUDENT\n\n");
                 fprintf(stdout, "Enter student ID: ");
-                char *id_str = read_line(100);
+                char *id_str = read_line(id_buff_size);
                 fprintf(stdout, "Enter student GPA: ");
-                char *gpa_str = read_line(100);
+                char *gpa_str = read_line(gpa_buff_size);
                 fprintf(stdout, "Enter student name: ");
-                char *name = read_line(100);
+                char *name = read_name(name_buff_size);
                 char *endptr;  // Pointer to the next character after the number
-                int32_t id = (int32_t) strtol(id_str, &endptr, 10);
+                int id = (int) strtol(id_str, &endptr, 10);
                 double gpa = (double) strtold(gpa_str, &endptr);
                 check_for_str_to_type_error(id, endptr);
-                check_for_str_to_type_error((int32_t) gpa, endptr);
+                check_for_str_to_type_error((int) gpa, endptr);
 
                 student_cell_T *student = NewStudentCell(id, gpa, name);
                 Enlist(list, student);
+                fprintf(stdout, "Student added: ");
+                print_student_attributes(student);
                 break;
             case 2:
-                fprintf(stdout, "%c\n", choice);
+                fprintf(stdout, "\n\nDELISTING STUDENT\n\n");
                 student_cell_T *removed_student = list->head;
+                fprintf(stdout, "\nRemoving: \n");
+                print_student_attributes(removed_student);
                 Delist(list);
-                if (removed_student->name == NULL) {
-                    break;
-                } else {
-                    fprintf(stdout, "\n\nREMOVED STUDENT: %s\n\n", removed_student->name);
-                }
+                /* free(removed_student->name); */
+                /* free(removed_student); */
                 break;
             case 3:
-                fprintf(stdout, "%c\n", choice);
+                fprintf(stdout, "\n\nPRINTING LENGTH OF LINKED LIST\n\n");
                 fprintf(stdout, "\nNumber of students: %i\n\n", LinkedListLength(list));
                 break;
             case 4:
                 /* RIGHT HERE: YOU'RE GETTING AN ADDRESS BOUNDARY ERROR */
-                fprintf(stdout, "%c\n", choice);
+                fprintf(stdout, "\n\nFETCHING STUDENT BY INDEX\n\n");
                 fprintf(stdout, "\nEnter index: ");
                 scanf("%i", &index_choice);
                 student_cell_T *chosen_student = GetLinkedListElement(list, index_choice);
@@ -94,22 +101,21 @@ main(int32_t argc, char *arvg[])
                 }
                 break;
             case 5:
-                fprintf(stdout, "%cn", choice);
+                fprintf(stdout, "\n\nPRINTING LIST OF ALL STUDENTS\n\n");
                 print_list(list);
                 break;
             case 6:
                 /* PRINT THE MIN, AVG, MAX GPAS IN LINKED LIST */
-                fprintf(stdout, "%c\n", choice);
+                fprintf(stdout, "\n\nPRINTING MINIMUM, AVERAGE, AND MAXIMUM GPA\n\n");
                 print_gpa_min_avg_max(list); // Initialize minimum value to a large valuein_avg_max(list);                
                 break;
             case 7:
                 /* REMOVE THE STUDENT WITH THE HIGHEST GPA AND PRINT HIS/HER INFO */
-                fprintf(stdout, "%c\n", choice);
+                fprintf(stdout, "\n\nREMOVING STUDENT WITH HIGHEST GPA\n\n");
                 remove_highest_gpa_student(list);
                 break;
             case 8:
-                fprintf(stdout, "%c\n", choice);
-                FreeLinkedList(list);
+                fprintf(stdout, "\n\nEXITING PROGRAM\n\n");
                 break;
             default:
                 fprintf(stdout, "Invalid choice\n");
@@ -118,7 +124,10 @@ main(int32_t argc, char *arvg[])
 
     } while (choice != 8);
 
-    fprintf(stdout, "\nExiting Program.\n");
+    FreeLinkedList(list);
+
+    fprintf(stdout, "\nEnd of program, thank you for using assignment 0. I love working with pointers /s\n");
+    
 
     return 0;
 }

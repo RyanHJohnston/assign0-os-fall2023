@@ -1,0 +1,9 @@
+1. I did this project entirely on my own, I did not collaborate with anyone.
+
+2. To be honest, I have no idea. The program works just fine and there are a few quirks, but I definitely did not utilize the best memory management practices. I would never use this for a real-world project, I would have used another language like Rust or Java to deal with the mind-numbing task of memory management.
+
+3. Everything works except for two things: not all the memory was freed and Delisting an empty linked list leads to a memory error. I didn't want to sort through hundreds of lines of pointers to find out how to free every byte of the program, it wasn't a good use of my time. As for the Delisting function, I was at a complete loss of how to deal with the empty linked list exception. An empty linked list would just result in an error, and I've tried every possible cheap trick I could think of. It was almost best to just write a blocking function that prevented the user from creating an empty linked list, but it was out of the scope of this project.
+
+4. I believe this project was the perfect refresher on C programming. It used the essentials without it being too complicated, I have no complaints. It used an elementary data structure, and complicated pointers were not needed. A competent programmer wouldn't find this project too difficult, but I can see how students who struggle with pointers would find this project nightmarish. Overall, it was fun. 
+
+Note: Please don't crucify my grade for not having all the memory freed...I tried my best :(

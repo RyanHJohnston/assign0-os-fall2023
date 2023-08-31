@@ -24,6 +24,7 @@
  * This is used just for easier reading
  * I am used to Rust anyways!
  */
+#include <stddef.h>
 #include <stdint.h>
 typedef int32_t i32;
 
@@ -147,24 +148,66 @@ student_cell_T *GetLinkedListElement(linked_list_T *list, int index);
  */
 void print_list(linked_list_T *list);
 
+/**
+ * @brief Prints out all of the options of the program
+ */
 void 
 print_options();
 
+/**
+ * @brief Prints all the attributes of a given student
+ *
+ * @param student: student_cell_T
+ */
 void
 print_student_attributes(student_cell_T *student);
 
+/**
+ * @brief DEPRECATED, NOT USED
+ */
 char *
 user_str_input(int32_t buffer_length);
 
+/**
+ * @brief Takes user string input and stores as etc
+ *
+ * @param buff_size: const size_t
+ * @return buff: char *
+ */
 char *
-read_line(int32_t buffer_size);
+read_line(const size_t buff_size);
 
+/**
+ * @brief Takes user string input and stores as a name
+ *
+ * @param name_buff_size: const size_t
+ * @return name: char *
+ */
+char *
+read_name(const size_t name_buff_size);
+
+/**
+ * @brief Checks for string conversion errors
+ *
+ * @param num: number
+ * @param endptr: Checks the end pointer
+ */
 void
 check_for_str_to_type_error(int32_t num, char *endptr);
 
+/**
+ * @brief Prints the minimu, average, and maximum of all student's GPAs.
+ *
+ * @param list: Linked List struct
+ */
 void
 print_gpa_min_avg_max(linked_list_T *list);
 
+/**
+ * @brief Removes the student with the highest GPA from the linked list
+ *
+ * @param list: Linked List struct 
+ */
 void
 remove_highest_gpa_student(linked_list_T *list);
 

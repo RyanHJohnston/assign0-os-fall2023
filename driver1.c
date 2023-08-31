@@ -1,7 +1,7 @@
 
 /*
  * File: driver1.c
- * YOUR NAME ... YOU NEED TO IMPLEMENT THE main() + additional functions if needed
+ * RYAN H. JOHNSTON ... YOU NEED TO IMPLEMENT THE main() + additional functions if needed
  *
  * ....
  */
@@ -46,9 +46,7 @@ main(int argc, char *arvg[])
     const size_t name_buff_size = MAX_NAME_BUFFER;
     linked_list_T *list = NewLinkedList();
     
-
     do {
-
         print_options();
         scanf("%i", &choice);
 

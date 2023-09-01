@@ -9,9 +9,10 @@ all: driver1
 
 clean:
 	rm -f *.o driver1
-run:
+output:
 	valgrind ./driver1 < driver1_input.txt > driver1_output.txt
-
+run:
+	./driver1
 mylinkedlist.o: mylinkedlist.c mylinkedlist.h
 	$(CC) $(CFLAGS) -c mylinkedlist.c
 

@@ -368,6 +368,7 @@ read_line(const size_t buff_size)
 char *
 read_name(const size_t name_buff_size)
 {
+    /* this properly allocates to the heap, right? */
     char *name = malloc(name_buff_size);
     scanf(" %[^\n]s", name);
     return name;
